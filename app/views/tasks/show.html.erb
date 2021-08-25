@@ -1,0 +1,5 @@
+<h2>tasks#show</h2>
+<p>タスク名：<%= @task.task_name %></p>
+<p>タスク詳細：<%= @task.detail %></p>
+<%= link_to 'edit', edit_task_path(@task.id) %> |
+<%= link_to 'task一覧', tasks_path %>
