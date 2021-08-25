@@ -9,6 +9,9 @@
   <tr>
     <td><%= task.task_name %></td>
     <td><%= task.detail %></td>
+    <td><%= link_to 'show', task_path(task.id) %></td>
+    <td><%= link_to 'edit', edit_task_path(task.id) %></td>
+    <td><%= link_to 'destroy', task_path(task.id), method: :delete %></td>
   </tr>
   <% end %>
 </table>
