@@ -1,0 +1,13 @@
+<h2>tasks#new</h2>
+<%= form_with(model: @task, local: true) do |form| %>
+  <div class="task_name">
+    <%= form.label :task_name %>
+    <%= form.text_field :task_name %>
+  </div>
+  <div class="task_detail">
+    <%= form.label :detail %>
+    <%= form.text_field :detail %>
+  </div>
+  <%= form.submit %>
+<% end %>
+<%= link_to 'task一覧', tasks_path %>
