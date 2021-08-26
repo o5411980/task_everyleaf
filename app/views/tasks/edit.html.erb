@@ -1,0 +1,23 @@
+<h2>タスク編集</h2>
+<%= form_with(model: @task, local: true) do |form| %>
+  <% if @task.errors.any? %>
+    <div class="error_explanation">
+      <h2><%= @task.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="task_name">
+    <%= form.label :task_name %>
+    <%= form.text_field :task_name %>
+  </div>
+  <div class="task_detail">
+    <%= form.label :detail %>
+    <%= form.text_field :detail %>
+  </div>
+  <%= form.submit %>
+<% end %>
+<%= link_to 'task一覧', tasks_path %>
