@@ -8,7 +8,7 @@
     <th><%= I18n.t('views.title.detail') %></th>
   </tr>
   <% @tasks.each do |task| %>
-  <tr>
+  <tr class="task_row">
     <td><%= task.id %></td>
     <td><%= task.task_name %></td>
     <td><%= task.detail %></td>
