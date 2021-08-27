@@ -3,12 +3,12 @@
 <%= link_to '新規タスク', new_task_path %>
 <table>
   <tr>
-    <th>タスクid</th>
-    <th>タスク名</th>
-    <th>タスク詳細</th>
+    <th><%= I18n.t('views.title.task_id') %></th>
+    <th><%= I18n.t('views.title.task_name') %></th>
+    <th><%= I18n.t('views.title.detail') %></th>
   </tr>
   <% @tasks.each do |task| %>
-  <tr>
+  <tr class="task_row">
     <td><%= task.id %></td>
     <td><%= task.task_name %></td>
     <td><%= task.detail %></td>

@@ -38,3 +38,16 @@ Label_record
 | id           | integer |
 | task_id      | integer |
 | label_id     | integer |
+
+
+●デプロイ手順 <br>
+githubとherokuの連携設定済みのため、下記手順でデプロイを行う。<br>
+~~~
+・stepX ブランチで開発を完了
+・Gemfileのruby2.6.5をコメントアウト
+・% bundle install
+・% git add -A
+・% git commit -m "コミットメッセージ"
+・% git push origin stepX
+その後、プルリクを作成し、reviewを受けて、masterにmergeされたら自動deploy
+~~~
