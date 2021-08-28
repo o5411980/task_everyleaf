@@ -30,9 +30,25 @@ RSpec.describe 'タスク管理機能', type: :system do
         FactoryBot.create(:task, task_name: 'task1')
         FactoryBot.create(:task, task_name: 'task2')
         visit tasks_path
+        sleep 0.2
         task_lists = all('.task_row')
         expect(task_lists[0]).to have_content 'task2'
         expect(task_lists[1]).to have_content 'task1'
+      end
+    end
+    context 'タスクが終了期限の昇順に並んでいる場合' do
+      it '終了期限が近いタスクが一番上に表示される' do
+        FactoryBot.create(:task, deadline: '2021-09-01 00:00:00')
+        FactoryBot.create(:task, deadline: '2021-10-01 00:00:00')
+        FactoryBot.create(:task, deadline: '2021-11-01 00:00:00')
+        visit tasks_path
+        click_link '終了期限でソート'
+        sleep 0.2
+#        binding.pry
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '2021-09-01 00:00:00'
+        expect(task_lists[1]).to have_content '2021-10-01 00:00:00'
+        expect(task_lists[2]).to have_content '2021-11-01 00:00:00'
       end
     end
   end
