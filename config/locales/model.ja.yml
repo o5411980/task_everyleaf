@@ -7,3 +7,4 @@ ja:
         task_name: タスク名
         detail: タスク詳細
         deadline: 終了期限
+        status: 進捗

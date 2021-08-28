@@ -22,6 +22,10 @@
     <%= form.label :deadline %>
     <%= form.datetime_field :deadline %>
   </div>
+  <div class="status">
+    <%= form.label :status %>
+    <%= form.select :status, [['未着手',0],['未完了',1],['完了',2]], {}, class: 'form-control', id: 'task_status'%>
+  </div>
   <%= form.submit %>
 <% end %>
 <%= link_to 'task一覧', tasks_path %>
