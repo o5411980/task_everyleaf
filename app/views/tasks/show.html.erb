@@ -1,5 +1,6 @@
 <h2>タスク詳細</h2>
 <p>タスク名：<%= @task.task_name %></p>
 <p>タスク詳細：<%= @task.detail %></p>
+<p>終了期限：<%= @task.deadline %></p>
 <%= link_to 'edit', edit_task_path(@task.id) %> |
 <%= link_to 'task一覧', tasks_path %>

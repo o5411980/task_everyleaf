@@ -18,6 +18,10 @@
     <%= form.label :detail %>
     <%= form.text_field :detail %>
   </div>
+  <div class="task_deadline">
+    <%= form.label :deadline %>
+    <%= form.datetime_field :deadline %>
+  </div>
   <%= form.submit %>
 <% end %>
 <%= link_to 'task一覧', tasks_path %>

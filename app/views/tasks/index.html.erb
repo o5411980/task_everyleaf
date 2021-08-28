@@ -1,17 +1,20 @@
 <h2>タスク一覧</h2>
 <p><%= notice %></p>
 <%= link_to '新規タスク', new_task_path %>
+<%= link_to '終了期限でソート', tasks_path(sort_deadline: "true") %>
 <table>
   <tr>
     <th><%= I18n.t('views.title.task_id') %></th>
     <th><%= I18n.t('views.title.task_name') %></th>
     <th><%= I18n.t('views.title.detail') %></th>
+    <th><%= I18n.t('views.title.deadline') %></th>
   </tr>
   <% @tasks.each do |task| %>
   <tr class="task_row">
     <td><%= task.id %></td>
     <td><%= task.task_name %></td>
     <td><%= task.detail %></td>
+    <td><%= task.deadline %></td>
     <td><%= link_to 'show', task_path(task.id) %></td>
     <td><%= link_to 'edit', edit_task_path(task.id) %></td>
     <td><%= link_to 'destroy', task_path(task.id), method: :delete %></td>
