@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    byebug
+#    byebug
     if params[:task_name].present? && params[:status].present?
       @tasks = Task.search_task_name_and_status(params[:task_name], params[:status])
 #      @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%").where(status: params[:status])

@@ -19,6 +19,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         #テストで使用するためのタスクを作成
         task = FactoryBot.create(:task, task_name: 'task')
         #タスク一覧ページに遷移
+        binding.pry
         visit tasks_path
         #visitしたpageに「task」という文字列がhave_contentされているかをexpect(期待して確認)
         expect(page).to have_content 'task'
