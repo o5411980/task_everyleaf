@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def index
-    if (params[:task_name] == "") && (params[:status])
+    if params[:task_name] && params[:status]
+      @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%").where(status: params[:status])
+    elsif (params[:task_name] == "") && (params[:status])
       @tasks = Task.where(status: params[:status])
     elsif params[:task_name] && (params[:status] == "")
       @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
