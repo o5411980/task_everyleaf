@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def index
-    if params[:task_name]
+    if (params[:task_name] == "") && (params[:status])
+      @tasks = Task.where(status: params[:status])
+    elsif params[:task_name] && (params[:status] == "")
       @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
     elsif params[:sort_deadline]
       @tasks = Task.order(deadline: :asc)
