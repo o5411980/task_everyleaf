@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def index
-    if params[:sort_deadline]
+    if params[:task_name]
+      @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
+    elsif params[:sort_deadline]
       @tasks = Task.order(deadline: :asc)
     else
       @tasks = Task.order(created_at: :desc)

@@ -24,7 +24,7 @@
   </div>
   <div class="status">
     <%= form.label :status %>
-    <%= form.select :status, [['未着手',0],['未完了',1],['完了',2]], {}, class: 'form-control', id: 'task_status'%>
+    <%= form.select :status, [['未着手',0],['着手中',1],['完了',2]], {}, class: 'form-control', id: 'task_status'%>
   </div>
   <%= form.submit %>
 <% end %>
