@@ -45,7 +45,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'タスク名', with: '1st'
         select '未着手', from: '進捗'
         click_on '検索'
-        binding.pry
+        sleep 0.2
         task_lists = all('.task_row')
         expect(task_lists[0]).to have_content '1st'
         expect(task_lists[0]).to have_content '未着手'
