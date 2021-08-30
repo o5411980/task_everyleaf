@@ -25,6 +25,9 @@
   <div class="status">
     <%= form.hidden_field :status, value: 1, id: 'task_status' %>
   </div>
+  <div class="priority">
+    <%= form.hidden_field :priority, value: 0, id: 'task_priority' %>
+  </div>
   <%= form.submit %>
 <% end %>
 <%= link_to 'task一覧', tasks_path %>

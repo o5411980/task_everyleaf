@@ -15,6 +15,8 @@
 
 <%= link_to '新規タスク', new_task_path %>
 <%= link_to '終了期限でソート', tasks_path(sort_deadline: "true") %>
+<%= link_to '優先順位でソート', tasks_path(sort_priority: "true") %>
+
 <table>
   <tr>
     <th><%= I18n.t('views.title.task_id') %></th>
@@ -22,6 +24,7 @@
     <th><%= I18n.t('views.title.detail') %></th>
     <th><%= I18n.t('views.title.deadline') %></th>
     <th><%= I18n.t('views.title.status') %></th>
+    <th><%= I18n.t('views.title.priority') %></th>
   </tr>
   <% @tasks.each do |task| %>
   <tr class="task_row">
@@ -33,6 +36,12 @@
       <%= '未着手' if task.status == 1 %>
       <%= '着手中' if task.status == 2 %>
       <%= '完了' if task.status == 3 %>
+    </td>
+    <td>
+      <%= '' if task.priority == 0 %>
+      <%= '低' if task.priority == 1 %>
+      <%= '中' if task.priority == 2 %>
+      <%= '高' if task.priority == 3 %>
     </td>
     <td><%= link_to 'show', task_path(task.id) %></td>
     <td><%= link_to 'edit', edit_task_path(task.id) %></td>
