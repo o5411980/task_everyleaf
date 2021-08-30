@@ -13,13 +13,52 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
 
+  describe '検索機能' do
+    before do
+      FactoryBot.create(:task, task_name: "task-1st")
+      FactoryBot.create(:task, task_name: "task-2nd")
+    end
+    context 'タスク名であいまい検索をした場合' do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+        visit tasks_path
+        fill_in 'タスク名', with: '2nd'
+        click_on '検索'
+        sleep 0.2
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '2nd'
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it 'ステータスに完全一致するタスクが絞り込まれる' do
+        visit tasks_path
+        select '未着手', from: '進捗'
+        click_on '検索'
+        sleep 0.2
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '未着手'
+        expect(task_lists[1]).to have_content '未着手'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスクが絞り込まれる" do
+        visit tasks_path
+        fill_in 'タスク名', with: '1st'
+        select '未着手', from: '進捗'
+        click_on '検索'
+        binding.pry
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '1st'
+        expect(task_lists[0]).to have_content '未着手'
+      end
+    end
+  end
+
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
         #テストで使用するためのタスクを作成
         task = FactoryBot.create(:task, task_name: 'task')
         #タスク一覧ページに遷移
-        binding.pry
         visit tasks_path
         #visitしたpageに「task」という文字列がhave_contentされているかをexpect(期待して確認)
         expect(page).to have_content 'task'
