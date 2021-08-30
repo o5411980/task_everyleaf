@@ -91,6 +91,21 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_lists[2]).to have_content '2021-11-01 00:00:00'
       end
     end
+    context 'タスクが優先順位の高い順に並んでいる場合' do
+      it '優先順位が高いタスクが一番上に表示される' do
+        FactoryBot.create(:task, task_name: '1st', priority: 3)
+        FactoryBot.create(:task, task_name: '2nd', priority: 2)
+        FactoryBot.create(:task, task_name: '3rd', priority: 1)
+        visit tasks_path
+        click_link '優先順位でソート'
+        sleep 0.2
+#        binding.pry
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '高'
+        expect(task_lists[1]).to have_content '中'
+        expect(task_lists[2]).to have_content '低'
+      end
+    end
   end
 
   describe '詳細表示機能' do
