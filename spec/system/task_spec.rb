@@ -97,9 +97,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         FactoryBot.create(:task, task_name: '2nd', priority: 2)
         FactoryBot.create(:task, task_name: '3rd', priority: 1)
         visit tasks_path
+#        binding.pry
         click_link '優先順位でソート'
         sleep 0.2
-#        binding.pry
         task_lists = all('.task_row')
         expect(task_lists[0]).to have_content '高'
         expect(task_lists[1]).to have_content '中'

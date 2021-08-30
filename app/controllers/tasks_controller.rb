@@ -2,20 +2,20 @@ class TasksController < ApplicationController
   def index
 #    byebug
     if params[:task_name].present? && params[:status].present?
-      @tasks = Task.search_task_name_and_status(params[:task_name], params[:status])
+      @tasks = Task.page(params[:page]).per(10).search_task_name_and_status(params[:task_name], params[:status])
 #      @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%").where(status: params[:status])
     elsif (params[:task_name].blank?) && (params[:status].present?)
-      @tasks = Task.search_status(params[:status])
+      @tasks = Task.page(params[:page]).per(10).search_status(params[:status])
 #      @tasks = Task.where(status: params[:status])
     elsif (params[:task_name].present?) && (params[:status].blank?)
-      @tasks = Task.search_task_name(params[:task_name])
+      @tasks = Task.page(params[:page]).per(10).search_task_name(params[:task_name])
 #      @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
     elsif params[:sort_deadline]
-      @tasks = Task.sort_deadline
+      @tasks = Task.page(params[:page]).per(10).sort_deadline
     elsif params[:sort_priority]
-      @tasks = Task.sort_priority
+      @tasks = Task.page(params[:page]).per(10).sort_priority
     else
-      @tasks = Task.sort_created_at
+      @tasks = Task.page(params[:page]).per(10).sort_created_at
     end
   end
 
