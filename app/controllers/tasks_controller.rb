@@ -12,6 +12,8 @@ class TasksController < ApplicationController
 #      @tasks = Task.where('task_name LIKE ?', "%#{params[:task_name]}%")
     elsif params[:sort_deadline]
       @tasks = Task.sort_deadline
+    elsif params[:sort_priority]
+      @tasks = Task.sort_priority
     else
       @tasks = Task.sort_created_at
     end
