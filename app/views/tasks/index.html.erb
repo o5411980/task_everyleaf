@@ -17,7 +17,7 @@
 <%= link_to '終了期限でソート', tasks_path(sort_deadline: "true") %>
 <%= link_to '優先順位でソート', tasks_path(sort_priority: "true") %>
 
-<table>
+<table border="0" CELLPADDING=5 CELLSPACING=2 style='border-collapse: separate; border-spacing: 5px;'>
   <tr>
     <th><%= I18n.t('views.title.task_id') %></th>
     <th><%= I18n.t('views.title.task_name') %></th>
