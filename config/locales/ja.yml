@@ -208,6 +208,9 @@ ja:
       task_id: 'タスクid'
       task_name: 'タスク名'
       detail: 'タスク詳細'
+      deadline: '終了期限'
+      status: '進捗'
+      priority: '優先順位'
     messages:
       email_already_exists: 'すでに同じメールアドレスが登録されています!'
       does_not_exist_email: 'メールアドレスが存在しません。アカウントを作成してください。'
@@ -231,3 +234,9 @@ ja:
       edit: '編集'
       delete: '削除'
       create: '作成'
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

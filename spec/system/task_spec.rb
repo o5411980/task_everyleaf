@@ -13,6 +13,46 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
 
+  describe '検索機能' do
+    before do
+      FactoryBot.create(:task, task_name: "task-1st")
+      FactoryBot.create(:task, task_name: "task-2nd")
+    end
+    context 'タスク名であいまい検索をした場合' do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+        visit tasks_path
+        fill_in 'タスク名', with: '2nd'
+        click_on '検索'
+        sleep 0.2
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '2nd'
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it 'ステータスに完全一致するタスクが絞り込まれる' do
+        visit tasks_path
+        select '未着手', from: '進捗'
+        click_on '検索'
+        sleep 0.2
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '未着手'
+        expect(task_lists[1]).to have_content '未着手'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスクが絞り込まれる" do
+        visit tasks_path
+        fill_in 'タスク名', with: '1st'
+        select '未着手', from: '進捗'
+        click_on '検索'
+        sleep 0.2
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '1st'
+        expect(task_lists[0]).to have_content '未着手'
+      end
+    end
+  end
+
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
@@ -30,9 +70,40 @@ RSpec.describe 'タスク管理機能', type: :system do
         FactoryBot.create(:task, task_name: 'task1')
         FactoryBot.create(:task, task_name: 'task2')
         visit tasks_path
+        sleep 0.2
         task_lists = all('.task_row')
         expect(task_lists[0]).to have_content 'task2'
         expect(task_lists[1]).to have_content 'task1'
+      end
+    end
+    context 'タスクが終了期限の昇順に並んでいる場合' do
+      it '終了期限が近いタスクが一番上に表示される' do
+        FactoryBot.create(:task, deadline: '2021-09-01 00:00:00')
+        FactoryBot.create(:task, deadline: '2021-10-01 00:00:00')
+        FactoryBot.create(:task, deadline: '2021-11-01 00:00:00')
+        visit tasks_path
+        click_link '終了期限でソート'
+        sleep 0.2
+#        binding.pry
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '2021-09-01 00:00:00'
+        expect(task_lists[1]).to have_content '2021-10-01 00:00:00'
+        expect(task_lists[2]).to have_content '2021-11-01 00:00:00'
+      end
+    end
+    context 'タスクが優先順位の高い順に並んでいる場合' do
+      it '優先順位が高いタスクが一番上に表示される' do
+        FactoryBot.create(:task, task_name: '1st', priority: 3)
+        FactoryBot.create(:task, task_name: '2nd', priority: 2)
+        FactoryBot.create(:task, task_name: '3rd', priority: 1)
+        visit tasks_path
+#        binding.pry
+        click_link '優先順位でソート'
+        sleep 0.2
+        task_lists = all('.task_row')
+        expect(task_lists[0]).to have_content '高'
+        expect(task_lists[1]).to have_content '中'
+        expect(task_lists[2]).to have_content '低'
       end
     end
   end
