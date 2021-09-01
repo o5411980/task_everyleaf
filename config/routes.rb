@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     get :search, on: :collection
   end
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
 end
