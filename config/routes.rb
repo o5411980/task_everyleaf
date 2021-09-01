@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sessions, only: [:new, :create, :destroy]
   root to: 'tasks#index'
   resources :tasks
   resources :tasks do
