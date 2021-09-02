@@ -244,4 +244,5 @@ ja:
     admin:
       user_id: 'ユーザーid'
       user_name: 'ユーザー名'
+      admin?: 'admin権限'
       user_created_at: 'アカウント作成日時'

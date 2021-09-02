@@ -1,16 +1,22 @@
 <h2>管理画面：ユーザー一覧</h2>
 
+<%= link_to "ユーザー登録", new_admin_user_path, class: 'btn btn-primary' %>
 <table border="0" CELLPADDING=5 CELLSPACING=2 style='border-collapse: separate; border-spacing: 5px;'>
   <tr>
     <th><%= I18n.t('views.admin.user_id') %></th>
     <th><%= I18n.t('views.admin.user_name') %></th>
+    <th><%= I18n.t('views.admin.admin?') %></th>
     <th><%= I18n.t('views.admin.user_created_at') %></th>
   </tr>
   <% @users.each do |user| %>
   <tr class="user_row">
     <td><%= user.id %></td>
     <td><%= user.name %></td>
+    <td><%= user.admin %></td>
     <td><%= user.created_at %></td>
+    <td><%= link_to "詳細", admin_user_path(user.id), class: 'btn btn-primary' %></td>
+    <td><%= link_to "編集", edit_admin_user_path(user), class: 'btn btn-primary' %></td>
+    <td><%= link_to "削除", admin_user_path(user), method: :delete, class: 'btn btn-danger' %></td>
   </tr>
   <% end %>
 </table>
