@@ -8,4 +8,6 @@ class Task < ApplicationRecord
   scope :sort_deadline, -> {order(deadline: :asc)}
   scope :sort_priority, -> {order(priority: :desc)}
   scope :sort_created_at, -> {order(created_at: :desc)}
+
+  belongs_to :user
 end
