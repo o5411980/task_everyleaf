@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create, :show]
+
+  namespace :admin do
+    resources :users
+  end
 end

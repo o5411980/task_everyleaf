@@ -1,0 +1,16 @@
+<h2>管理画面：ユーザー一覧</h2>
+
+<table border="0" CELLPADDING=5 CELLSPACING=2 style='border-collapse: separate; border-spacing: 5px;'>
+  <tr>
+    <th><%= I18n.t('views.admin.user_id') %></th>
+    <th><%= I18n.t('views.admin.user_name') %></th>
+    <th><%= I18n.t('views.admin.user_created_at') %></th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr class="user_row">
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.created_at %></td>
+  </tr>
+  <% end %>
+</table>
