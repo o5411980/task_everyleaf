@@ -13,5 +13,6 @@
   <%= '中' if @task.priority == 2 %>
   <%= '高' if @task.priority == 3 %>
 </p>
+<p>タスク作成者：<%= @task.user.name %></p>
 <%= link_to 'edit', edit_task_path(@task.id) %> |
 <%= link_to 'task一覧', tasks_path %>

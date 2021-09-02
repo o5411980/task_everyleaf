@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   def show
     if params[:id] == (current_user.id.to_s)
       @user = User.find(params[:id])
+      @tasks = @user.tasks.page(params[:page]).per(10).sort_created_at
     else
       redirect_to tasks_path
     end
