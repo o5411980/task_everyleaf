@@ -15,6 +15,7 @@ describe 'タスクモデル機能', type: :model do
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
+        byebug
         task = Task.new(task_name: 'hoge', detail: 'fuga')
         expect(task).to be_valid
       end
