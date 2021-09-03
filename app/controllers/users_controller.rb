@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if params[:id] == (current_user.id.to_s)
+    if params[:id] == (current_user.id.to_s) || (current_user.admin == true)
       @user = User.find(params[:id])
       @tasks = @user.tasks.page(params[:page]).per(10).sort_created_at
     else

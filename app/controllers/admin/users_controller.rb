@@ -3,7 +3,8 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc)
-#    @tasks = Task.all.includes(:user)
+    @tasks = Task.all.includes(:user)
+#    byebug
   end
 
   def show
@@ -43,12 +44,11 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+  def admin_user
+    redirect_to root_path, notice: "管理者権限が必要です。" unless current_user.admin?
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :admin, :password, :password_confirmation)
-  end
-
-  def admin_user
-    redirect_to root_path unless current_user.admin?
   end
 end
