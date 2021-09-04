@@ -1,6 +1,6 @@
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス：<%= @user.email%></p>
-<%= link_to 'task一覧', tasks_path %>
+<%= link_to 'task一覧', tasks_path, class: 'btn btn-primary' %>
 <%= link_to '管理者ページ', admin_users_path, class: 'btn btn-danger' if current_user.admin == true %>
 <table border="0" CELLPADDING=5 CELLSPACING=2 style='border-collapse: separate; border-spacing: 5px;'>
   <tr>

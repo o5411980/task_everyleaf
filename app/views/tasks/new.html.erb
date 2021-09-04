@@ -22,14 +22,14 @@
     <%= form.label :deadline %>
     <%= form.datetime_field :deadline %>
   </div>
-  <div class="status">
+  <div class="form-group">
     <%= form.label :status %>
     <%= form.select :status, [['未着手',1],['着手中',2],['完了',3]], {}, class: 'form-control', id: 'task_status'%>
   </div>
-  <div class="priority">
+  <div class="form-group">
     <%= form.label :priority %>
     <%= form.select :priority, [['',0],['低',1],['中',2],['高',3]], {}, class: 'form-control', id: 'task_priority'%>
   </div>
   <%= form.submit %>
 <% end %>
-<%= link_to 'task一覧', tasks_path %>
+<%= link_to 'task一覧', tasks_path, class: 'btn btn-primary' %>

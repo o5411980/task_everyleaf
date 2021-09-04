@@ -12,9 +12,9 @@
   <%= form.submit "検索" %>
 <% end %>
 
-<%= link_to '新規タスク', new_task_path %>
-<%= link_to '終了期限でソート', tasks_path(sort_deadline: "true") %>
-<%= link_to '優先順位でソート', tasks_path(sort_priority: "true") %>
+<%= link_to '新規タスク', new_task_path, class: 'btn btn-primary' %>
+<%= link_to '終了期限でソート', tasks_path(sort_deadline: "true"), class: 'btn btn-primary' %>
+<%= link_to '優先順位でソート', tasks_path(sort_priority: "true"), class: 'btn btn-primary' %>
 <table>
   <tr>
     <th><%= current_user.name %>さんが登録したタスク数：</th>
@@ -49,9 +49,9 @@
       <%= '高' if task.priority == 3 %>
     </td>
     <td><%= task.user.name %></td>
-    <td><%= link_to 'show', task_path(task.id) %></td>
-    <td><%= link_to 'edit', edit_task_path(task.id) %></td>
-    <td><%= link_to 'destroy', task_path(task.id), method: :delete %></td>
+    <td><%= link_to 'show', task_path(task.id), class: 'btn btn-primary' %></td>
+    <td><%= link_to 'edit', edit_task_path(task.id), class: 'btn btn-primary' %></td>
+    <td><%= link_to 'destroy', task_path(task.id), method: :delete, class: 'btn btn-danger' %></td>
   </tr>
   <% end %>
 </table>
