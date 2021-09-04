@@ -30,7 +30,7 @@ describe 'タスクモデル機能', type: :model do
 #    byebug
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
-        user = User.create!(name: 'test01', email: 'test01@example.com', password: 'test02', admin: false)
+        user = User.create!(name: 'test01', email: 'test01@example.com', password: 'test01', admin: false)
         task1 = Task.create(task_name: 'task-1st', detail: 'fuga', status: 1, user_id: user.id)
         task2 = Task.create(task_name: 'task-2nd', detail: 'hoge', status: 1, user_id: user.id)
         expect(Task.search_task_name("task")[0].task_name).to include('task')
