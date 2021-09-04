@@ -1,0 +1,36 @@
+<h1><%= @user.name %>のページ</h1>
+<p>メールアドレス：<%= @user.email%></p>
+<%= link_to 'task一覧', tasks_path, class: 'btn btn-primary' %>
+<%= link_to '管理者ページ', admin_users_path, class: 'btn btn-danger' if current_user.admin == true %>
+<table border="0" CELLPADDING=5 CELLSPACING=2 style='border-collapse: separate; border-spacing: 5px;'>
+  <tr>
+    <th><%= I18n.t('views.title.task_id') %></th>
+    <th><%= I18n.t('views.title.task_name') %></th>
+    <th><%= I18n.t('views.title.detail') %></th>
+    <th><%= I18n.t('views.title.deadline') %></th>
+    <th><%= I18n.t('views.title.status') %></th>
+    <th><%= I18n.t('views.title.priority') %></th>
+    <th><%= I18n.t('views.title.user') %></th>
+  </tr>
+  <% @tasks.each do |task| %>
+  <tr class="task_row">
+    <td><%= task.id %></td>
+    <td><%= task.task_name %></td>
+    <td><%= task.detail %></td>
+    <td><%= task.deadline %></td>
+    <td>
+      <%= '未着手' if task.status == 1 %>
+      <%= '着手中' if task.status == 2 %>
+      <%= '完了' if task.status == 3 %>
+    </td>
+    <td>
+      <%= '' if task.priority == 0 %>
+      <%= '低' if task.priority == 1 %>
+      <%= '中' if task.priority == 2 %>
+      <%= '高' if task.priority == 3 %>
+    </td>
+    <td><%= task.user.name %></td>
+  </tr>
+  <% end %>
+</table>
+<%= paginate @tasks %>

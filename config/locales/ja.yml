@@ -211,6 +211,7 @@ ja:
       deadline: '終了期限'
       status: '進捗'
       priority: '優先順位'
+      user: 'タスク作成者'
     messages:
       email_already_exists: 'すでに同じメールアドレスが登録されています!'
       does_not_exist_email: 'メールアドレスが存在しません。アカウントを作成してください。'
@@ -240,3 +241,9 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+    admin:
+      user_id: 'ユーザーid'
+      user_name: 'ユーザー名'
+      admin?: 'admin権限'
+      user_created_at: 'アカウント作成日時'
+      task_count: '登録タスク数'
