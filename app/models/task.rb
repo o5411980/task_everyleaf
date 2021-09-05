@@ -8,6 +8,8 @@ class Task < ApplicationRecord
   scope :sort_deadline, -> {order(deadline: :asc)}
   scope :sort_priority, -> {order(priority: :desc)}
   scope :sort_created_at, -> {order(created_at: :desc)}
+#  scope :search_label, -> (params[:label_id]){joins(:labels).where(labels: {id: params[:label_id]})}
+#  scope :search_label, -> (params[:label_id]){where(labels: {id: params[:label_id]})}
 
   belongs_to :user
   has_many :labellings, dependent: :destroy
