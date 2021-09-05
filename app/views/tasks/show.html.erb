@@ -14,5 +14,10 @@
   <%= '高' if @task.priority == 3 %>
 </p>
 <p>タスク作成者：<%= @task.user.name %></p>
+<p>ラベル：
+  <% @task.labels.each do |label| %>
+    <%= label.label_name%><a>、</a>
+  <% end %>
+</p>
 <%= link_to 'edit', edit_task_path(@task.id), class: 'btn btn-primary' %> |
 <%= link_to 'task一覧', tasks_path, class: 'btn btn-primary' %>

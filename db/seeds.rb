@@ -8,7 +8,7 @@ end
 11.times do |n|
   task_name = Faker::Lorem.word
   detail = Faker::Lorem.sentence
-  user_id = User.first
+  user_id = User.first.id
   Task.create!(task_name: "task-#{task_name}", detail: detail, status: 1, user_id: user_id)
 end
 
