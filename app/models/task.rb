@@ -10,4 +10,6 @@ class Task < ApplicationRecord
   scope :sort_created_at, -> {order(created_at: :desc)}
 
   belongs_to :user
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
 end
