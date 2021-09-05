@@ -2,12 +2,16 @@
 
 <%= form_with(model: @task, url: tasks_path, method: :get, local: true) do |form| %>
   <span>
-    <%= form.label :task_name, "タスク名" %>
+    <%= form.label :task_name, "タスク名" %><a>：</a>
     <%= form.text_field :task_name %>
   </span>
   <span class="status">
-    <%= form.label :status, "進捗" %>
+    <%= form.label :status, "進捗" %><a>：</a>
     <%= form.select :status, options_for_select([[''], ['未着手',1],['着手中',2],['完了',3]]), class: 'form-control', id: 'task_status'%>
+  </span>
+  <span class="label">
+    <%= form.label :label_id, "ラベル" %><a>：</a>
+    <%= form.select :label_id, Label.all.collect {|p| [p.label_name, p.id]}, include_blank: true %>
   </span>
   <%= form.submit "検索" %>
 <% end %>

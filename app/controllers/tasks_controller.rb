@@ -20,6 +20,9 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.page(params[:page]).per(10).sort_created_at
 #      @tasks = Task.page(params[:page]).per(10).sort_created_at
     end
+#    @tasks = @tasks.page(params[:page]).per(10).search_label(params[:label_id]) if params[:label_id].present?
+#    @tasks = @tasks.joins(:labels).page(params[:page]).per(10).search_label(params[:label_id]) if params[:label_id].present?
+    @tasks = @tasks.joins(:labels).where(labels: {id: params[:label_id]}) if params[:label_id].present?
   end
 
   def new
@@ -61,6 +64,6 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_name, :detail, :deadline, :status, :priority)
+    params.require(:task).permit(:task_name, :detail, :deadline, :status, :priority, {label_ids: []})
   end
 end
