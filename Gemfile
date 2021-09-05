@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-i18n'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -23,7 +24,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'faker'
+#  gem 'faker'
   gem 'launchy'
   gem 'pry-rails'
 end
